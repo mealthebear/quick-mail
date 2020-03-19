@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& .MuliTextField-root': {
-            margin: theme.spacing(1),
-            width: 200,
-        },
-    },
-}));
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//         '& .MuliTextField-root': {
+//             margin: theme.spacing(1),
+//             width: 200,
+//         },
+//     },
+// }));
 
 export default class Form extends Component {
     constructor(props) {
@@ -45,7 +45,22 @@ export default class Form extends Component {
                             label='Name'
                             multiline
                             name='name'
-                            value={this.state.nameValue}
+                            onChange={this.handleChange}
+                            variant='outlined'
+                        />
+                        <TextField
+                            id='outlined-multiline-flexible'
+                            label='E-mail'
+                            multiline
+                            name='email'
+                            onChange={this.handleChange}
+                            variant='outlined'
+                        />
+                        <TextField
+                            id='outlined-multiline-flexible'
+                            label='Message'
+                            multiline
+                            name='message'
                             onChange={this.handleChange}
                             variant='outlined'
                         />
