@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Form from './Form.js';
 
 export default class App extends Component {
     constructor(props) {
@@ -8,7 +9,10 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>This is the App!</div>
+            <div>
+                This is the App!
+                <Form />
+            </div>
         )
     }
 }
