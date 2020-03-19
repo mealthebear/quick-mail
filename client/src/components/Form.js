@@ -18,7 +18,10 @@ export default class Form extends Component {
             classes: '',
             name: '',
             email: '',
-            message: ''
+            message: '',
+            nameError: false,
+            emailError: false,
+            messageError: false
         };
         this.checkState = this.checkState.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -41,24 +44,30 @@ export default class Form extends Component {
                 <form noValidate autoComplete='off'>
                     <div>
                         <TextField
+                            error={ this.state.nameError ? true : false }
+                            helperText={ this.state.nameError ? 'Please enter a name' : null }
                             id='outlined-multiline-flexible'
-                            label='Name'
+                            label={ !this.state.nameError ? 'Name' : 'Error' }
                             multiline
                             name='name'
                             onChange={this.handleChange}
                             variant='outlined'
                         />
                         <TextField
+                            error={ this.state.emailError ? true : false }
+                            helperText={ this.state.emailError ? 'Please enter a valid e-mail' : null }
                             id='outlined-multiline-flexible'
-                            label='E-mail'
+                            label={ !this.state.emailError ? 'E-mail' : 'Error' }
                             multiline
                             name='email'
                             onChange={this.handleChange}
                             variant='outlined'
                         />
                         <TextField
+                            error={ this.state.messageError ? true : false }
+                            helperText={ this.state.messageError ? 'Please enter a message' : null }
                             id='outlined-multiline-flexible'
-                            label='Message'
+                            label={ !this.state.MessageError ? 'Message' : 'Error' }
                             multiline
                             name='message'
                             onChange={this.handleChange}
