@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
@@ -19,6 +20,7 @@ export default class Form extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.inputValidation = this.inputValidation.bind(this);
+        this.sendEmail = this.sendEmail.bind(this);
     }
 
     checkState() {
@@ -30,7 +32,14 @@ export default class Form extends Component {
     }
 
     handleSubmit() {
-
+        if (this.inputValidation()) {
+            this.setState({ 
+                emailError: false, 
+                messageError: false, 
+                nameError: false 
+            });
+            this.sendEmail();
+        }
     }
 
     inputValidation() {
@@ -48,6 +57,21 @@ export default class Form extends Component {
             isValid = false;
         }
         return isValid;
+    }
+
+    sendEmail() {
+        let info = {
+            email: this.state.email,
+            message: this.state.message,
+            name: this.state.name
+        }
+        Axios.post('/test', info)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
@@ -97,7 +121,8 @@ export default class Form extends Component {
                     <Button
                     variant='contained'
                     color='primary'
-                    endIcon={ <Icon>send</Icon> }>
+                    endIcon={ <Icon>send</Icon> }
+                    onClick={this.handleSubmit}>
                     Send
                     </Button>
                 </form>
