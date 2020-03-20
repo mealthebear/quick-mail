@@ -8,15 +8,17 @@ export default class Form extends Component {
         super(props);
         this.state = {
             classes: '',
-            name: '',
             email: '',
-            message: '',
-            nameError: false,
             emailError: false,
-            messageError: false
+            message: '',
+            messageError: false,
+            name: '',
+            nameError: false
         };
         this.checkState = this.checkState.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.inputValidation = this.inputValidation.bind(this);
     }
 
     checkState() {
@@ -24,9 +26,28 @@ export default class Form extends Component {
     }
 
     handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
+    handleSubmit() {
+
+    }
+
+    inputValidation() {
+        let isValid = true;
+        if (!this.state.name) {
+            this.setState({ nameError: true })
+            isValid = false;
+        }
+        if (!this.state.email || this.state.email.indexOf('@') <= -1 ) {
+            this.setState({ emailError: true })
+            isValid = false;
+        }
+        if (!this.state.message) {
+            this.setState({ messageError: true })
+            isValid = false;
+        }
+        return isValid;
     }
 
     render() {
