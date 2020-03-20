@@ -20,15 +20,10 @@ export default class Form extends Component {
             success: false,
             unsuccessful: false
         };
-        this.checkState = this.checkState.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.inputValidation = this.inputValidation.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
-    }
-
-    checkState() {
-        console.log(this.state);
     }
 
     handleChange(event) {
@@ -83,7 +78,6 @@ export default class Form extends Component {
     render() {
         return (
             <div>
-                <p onClick={this.checkState}>Let's check state!</p>
                 <form noValidate autoComplete='off'>
                     <div>
                         <div className="input-section">
@@ -92,7 +86,6 @@ export default class Form extends Component {
                                 helperText={ this.state.nameError ? 'Please enter a name' : null }
                                 id='outlined-multiline-flexible'
                                 label={ !this.state.nameError ? 'Name' : 'Error' }
-                                mr={10}
                                 multiline
                                 name='name'
                                 onChange={this.handleChange}
