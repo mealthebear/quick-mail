@@ -1,3 +1,7 @@
 .input-section {
     margin-bottom: 10px;
 }
+
+.send-icon {
+    position: absolute;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 
@@ -14,7 +16,9 @@ export default class Form extends Component {
             message: '',
             messageError: false,
             name: '',
-            nameError: false
+            nameError: false,
+            success: false,
+            unsuccessful: false
         };
         this.checkState = this.checkState.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -68,9 +72,11 @@ export default class Form extends Component {
         Axios.post('/test', info)
             .then((response) => {
                 console.log(response);
+                this.setState({ success: true })
             })
             .catch((error) => {
                 console.log(error);
+                this.setState({ unsuccessful: true })
             });
     }
 
@@ -118,13 +124,18 @@ export default class Form extends Component {
                             />
                         </div>
                     </div>
-                    <Button
-                    variant='contained'
-                    color='primary'
-                    endIcon={ <Icon>send</Icon> }
-                    onClick={this.handleSubmit}>
-                    Send
-                    </Button>
+                    <div>
+                        <Button
+                        variant='contained'
+                        color='primary'
+                        endIcon={ <Icon>send</Icon> }
+                        onClick={this.handleSubmit}>
+                        Send
+                        </Button>
+                        
+                        {this.state.success ? <div><span>Message sent successfully!</span> <CheckCircleIcon className="send-icon" onClick={() => this.setState({ success: false })} style={{ fontSize: 40 }} /> </div> : null}
+                        {this.state.unsuccessful ? <div><span>Uh oh! Couldn't send message.</span> <ErrorIcon className="send-icon" onClick={() => this.setState({ unsuccessful: false })} style={{ fontSize: 40 }} /> </div> : null}
+                    </div>
                 </form>
             </div>
         )
