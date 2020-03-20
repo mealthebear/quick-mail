@@ -59,11 +59,13 @@ export default class Form extends Component {
     }
 
     sendEmail() {
-        let email = this.state.email;
-        let message = this.state.message;
-        let name = this.state.name;
+        let info = {
+            email: this.state.email,
+            message: this.state.message,
+            name: this.state.name
+        }
         this.setState({ loading: true })
-        Axios.post('/test')
+        Axios.post('/test', info)
             .then((response) => {
                 console.log(response);
                 this.setState({
