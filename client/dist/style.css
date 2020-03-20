@@ -3,5 +3,13 @@
 }
 
 .send-icon {
+    cursor: pointer;
     position: absolute;
+}
+
+.send-message {
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    line-height: 40px;
 }

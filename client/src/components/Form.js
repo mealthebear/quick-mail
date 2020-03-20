@@ -132,9 +132,8 @@ export default class Form extends Component {
                         onClick={this.handleSubmit}>
                         Send
                         </Button>
-                        
-                        {this.state.success ? <div><span>Message sent successfully!</span> <CheckCircleIcon className="send-icon" onClick={() => this.setState({ success: false })} style={{ fontSize: 40 }} /> </div> : null}
-                        {this.state.unsuccessful ? <div><span>Uh oh! Couldn't send message.</span> <ErrorIcon className="send-icon" onClick={() => this.setState({ unsuccessful: false })} style={{ fontSize: 40 }} /> </div> : null}
+                        {this.state.success ? <div onClick={() => this.setState({ success: false })}><span className="send-message">Message sent successfully!</span> <CheckCircleIcon className="send-icon" style={{ fontSize: 40 }} /> </div> : null}
+                        {this.state.unsuccessful ? <div onClick={() => this.setState({ unsuccessful: false })}><span className="send-message">Uh oh! Couldn't send message.</span> <ErrorIcon className="send-icon" style={{ fontSize: 40 }} /> </div> : null}
                     </div>
                 </form>
             </div>
